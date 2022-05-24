@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="mysttic.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="mysttic.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Soneta.Business">
+      <HintPath>..\additional_dlls\Soneta.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="Soneta.Data">
+      <HintPath>..\additional_dlls\Soneta.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Soneta.Types">
+      <HintPath>..\additional_dlls\Soneta.Types.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
