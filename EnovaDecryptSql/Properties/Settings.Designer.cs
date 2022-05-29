@@ -26,8 +26,7 @@ namespace EnovaDecryptSql.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsd=\"http://www.w3." +
-            "org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n  <s" +
-            "tring>C:\\Users\\mystt\\Desktop\\Lista baz danych.xml</string>\r\n</ArrayOfString>")]
+            "org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" />")]
         public global::System.Collections.Specialized.StringCollection ListyBazDanych {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["ListyBazDanych"]));
