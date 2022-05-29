@@ -1,5 +1,6 @@
 ﻿using EnovaDecryptSql.Models;
 using EnovaDecryptSql.Properties;
+using Microsoft.Win32;
 using Soneta.Business.App;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace EnovaDecryptSql
             DataGridCell cell = sender as DataGridCell;
             DatabaseCollectionMsSqlDatabase database = cell.DataContext as DatabaseCollectionMsSqlDatabase;
             string haslo = database.OperatorPassword?.TrimStart('=');
-            string decrypted = Coder.Decrypt(haslo, database.Key);
+            string decrypted = Coder.Decrypt(haslo, database.Key) ?? "";
 
             database.ShowedOperatorPassword = decrypted;
         }
@@ -66,15 +67,28 @@ namespace EnovaDecryptSql
             database.ShowedOperatorPassword = "********";
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            if (!Settings.Default.ListyBazDanych.Contains(ListaBazDanychCB.Text))
+            if (!string.IsNullOrEmpty(ListaBazDanychCB.Text))
             {
-                Settings.Default.ListyBazDanych.Add(ListaBazDanychCB.Text);
-                Settings.Default.Save();
-                ListaBazDanychCB.ItemsSource = Settings.Default.ListyBazDanych;
+                if (!Settings.Default.ListyBazDanych.Contains(ListaBazDanychCB.Text))
+                {
+                    Settings.Default.ListyBazDanych.Add(ListaBazDanychCB.Text);
+                    Settings.Default.Save();
+                    ListaBazDanychCB.ItemsSource = Settings.Default.ListyBazDanych;
+                }
+                InitDatabases();
             }
-            InitDatabases();
+        }
+
+        private void Select_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ListaBazDanychCB.Text = openFileDialog.FileName;
+                Refresh_Click(sender, e);
+            }
         }
     }
 }
